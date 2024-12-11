@@ -50,7 +50,7 @@ jobs:
     - name: Move dist folder to root
       run: |
         if [ -d "gitlab-project/GameTracker/dist" ]; then
-          mv gitlab-project/GameTracker/dist/browser/* ./docs/
+          mv gitlab-project/GameTracker/dist/* ./docs
           rm -rf gitlab-project
         else
           echo "No dist folder found, skipping file move."
@@ -64,8 +64,6 @@ jobs:
         GIT_COMMITTER_EMAIL: actions@github.com
       run: |
         touch .nojekyll
-        mv game-tracker/browser .
-        rm -r game-tracker
         git add .
         git commit -m "Deploy to GitHub Pages"
         git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
