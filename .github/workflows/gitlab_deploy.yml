@@ -50,9 +50,10 @@ jobs:
         GIT_COMMITTER_NAME: GitHub Actions
         GIT_COMMITTER_EMAIL: actions@github.com
       run: |
-        git checkout origin/gh-pages
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
-        git add dist
+        git fetch origin gh-pages || git checkout --orphan gh-pages
+        git checkout gh-pages
+        git rm -rf .
+        cp -r dist/* .
+        git add .
         git commit -m "Deploy to GitHub Pages"
-        git push origin gh-pages
+        git push origin gh-pages --force
