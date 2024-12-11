@@ -6,6 +6,10 @@ on:
     branches:
       - main
       - gh-pages
+      - deploy-test
+  pull:
+    branches:
+      - deploy-test
 
 jobs:
   deploy:
