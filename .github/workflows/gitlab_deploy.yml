@@ -28,15 +28,15 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '18'
 
     - name: Install dependencies
-      working-directory: gitlab-project
-      run: npm ci
+      working-directory: gitlab-project/GameTracker
+      run: npm install -g @angular/cli
 
     - name: Build project
-      working-directory: gitlab-project
-      run: npm run build --prod
+      working-directory: gitlab-project/GameTracker
+      run: ng build --prod
 
     - name: Move built files to GitHub repository
       run: |
