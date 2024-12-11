@@ -62,6 +62,9 @@ jobs:
         git checkout gh-pages
         git rm -rf .
         touch .nojekyll
+        mv game-tracker ./
+        mv game-tracker/browser ./
+        rm -r game-tracker
         git add .
         git commit -m "Deploy to GitHub Pages"
         git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
