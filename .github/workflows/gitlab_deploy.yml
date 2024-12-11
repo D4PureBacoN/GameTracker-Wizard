@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - gh-pages
       - deploy-test
   workflow_dispatch:
 
@@ -43,7 +42,12 @@ jobs:
       working-directory: gitlab-project/GameTracker
       run: npm run build --
 
-    - name: Deploy to gh-pages
+    - name: Move dist folder to root
+      run: |
+        mv gitlab-project/GameTracker/dist/* ./
+        rm -rf gitlab-project
+
+    - name: Deploy to GitHub Pages
       env:
         GIT_AUTHOR_NAME: GitHub Actions
         GIT_AUTHOR_EMAIL: actions@github.com
@@ -53,7 +57,7 @@ jobs:
         git fetch origin gh-pages || git checkout --orphan gh-pages
         git checkout gh-pages
         git rm -rf .
-        cp -r gitlab-project/GameTracker/dist/* .
+        cp -r dist/* .
         touch .nojekyll
         git add .
         git commit -m "Deploy to GitHub Pages"
