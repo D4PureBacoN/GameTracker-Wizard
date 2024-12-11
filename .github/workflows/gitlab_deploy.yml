@@ -41,6 +41,7 @@ jobs:
     - name: Move built files to GitHub repository
       run: |
         mv gitlab-project/GameTracker/dist/* ./dist/
+        cd
 
     - name: Add dist
       env:
