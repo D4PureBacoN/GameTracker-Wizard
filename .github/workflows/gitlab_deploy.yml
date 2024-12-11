@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout GitHub repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Fetch from GitLab
       run: |
@@ -26,19 +26,20 @@ jobs:
         git checkout develop
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: '22'
+        node-version: $
+        cache: 'npm'
+        cache-dependency-path: package-lock.json
 
     - name: Install dependencies
       working-directory: gitlab-project/GameTracker
       run: |
         npm i @angular/cli@19.0.0
-        npm install
 
     - name: Build project
       working-directory: gitlab-project/GameTracker
-      run: ng build --prod
+      run: npm run build --prod
 
     - name: Move built files to GitHub repository
       run: |
