@@ -20,6 +20,11 @@ jobs:
       with:
         submodules: false
 
+    - name: Checkout gh-pages branch
+      run: |
+        git fetch origin gh-pages || git checkout --orphan gh-pages
+        git checkout gh-pages
+
     - name: Fetch from GitLab
       run: |
         mkdir gitlab-project
@@ -45,7 +50,7 @@ jobs:
     - name: Move dist folder to root
       run: |
         if [ -d "gitlab-project/GameTracker/dist" ]; then
-          mv gitlab-project/GameTracker/dist/* ./
+          mv gitlab-project/GameTracker/dist/browser/* ./docs/
           rm -rf gitlab-project
         else
           echo "No dist folder found, skipping file move."
@@ -58,10 +63,6 @@ jobs:
         GIT_COMMITTER_NAME: GitHub Actions
         GIT_COMMITTER_EMAIL: actions@github.com
       run: |
-        git fetch origin gh-pages || git checkout --orphan gh-pages
-        git checkout gh-pages
-        git rm -rf .
-        git commit -AM "Remove all old files"
         touch .nojekyll
         mv game-tracker/browser .
         rm -r game-tracker
