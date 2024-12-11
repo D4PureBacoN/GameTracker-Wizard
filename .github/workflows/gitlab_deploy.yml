@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       working-directory: gitlab-project/GameTracker
-      run: npm install -g @angular/cli
+      run: npm i @angular/cli@19.0.0
 
     - name: Build project
       working-directory: gitlab-project/GameTracker
