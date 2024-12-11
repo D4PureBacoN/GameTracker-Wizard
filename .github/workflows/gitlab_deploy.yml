@@ -40,7 +40,7 @@ jobs:
 
     - name: Move built files to GitHub repository
       run: |
-        mv gitlab-repo/dist/GameTracker/* ./dist/
+        mv gitlab-project/GameTracker/dist/* ./dist/
 
     - name: Commit and push to gh-pages branch
       env:
