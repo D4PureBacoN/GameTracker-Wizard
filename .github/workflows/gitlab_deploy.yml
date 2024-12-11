@@ -23,7 +23,7 @@ jobs:
         git init
         git remote add origin https://oauth2:${{ secrets.GITLAB_SECRET }}@code.ovgu.de/seidl/se24-exercise09.git
         git fetch origin
-        git checkout develop gitlab/develop
+        git checkout develop
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
