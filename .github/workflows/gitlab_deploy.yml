@@ -52,8 +52,9 @@ jobs:
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git add dist
-
-    - name: Commit to gh-pages
-      run: |
         git commit -m "Deploy to GitHub Pages"
+
+    - name: push to gh-pages
+      run: |
+        git checkout gh-pages
         git push origin git subtree split --prefix dist main:gh-pages --force
