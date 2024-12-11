@@ -45,7 +45,7 @@ jobs:
     - name: Move dist folder to root
       run: |
         if [ -d "gitlab-project/GameTracker/dist" ]; then
-          mv gitlab-project/GameTracker/dist/* ./dist/
+          mv gitlab-project/GameTracker/dist/* ./
           rm -rf gitlab-project
         else
           echo "No dist folder found, skipping file move."
@@ -61,7 +61,6 @@ jobs:
         git fetch origin gh-pages || git checkout --orphan gh-pages
         git checkout gh-pages
         git rm -rf .
-        cp -r dist/* .
         touch .nojekyll
         git add .
         git commit -m "Deploy to GitHub Pages"
