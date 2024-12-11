@@ -44,8 +44,12 @@ jobs:
 
     - name: Move dist folder to root
       run: |
-        mv gitlab-project/GameTracker/dist/* ./
-        rm -rf gitlab-project
+        if [ -d "gitlab-project/GameTracker/dist" ]; then
+          mv gitlab-project/GameTracker/dist/* ./dist/
+          rm -rf gitlab-project
+        else
+          echo "No dist folder found, skipping file move."
+        fi
 
     - name: Deploy to GitHub Pages
       env:
