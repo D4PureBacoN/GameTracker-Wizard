@@ -1,5 +1,8 @@
 name: Deploy from GitLab to GitHub Pages
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
@@ -56,4 +59,4 @@ jobs:
         cp -r dist/* .
         git add .
         git commit -m "Deploy to GitHub Pages"
-        git push origin gh-pages --force
+        git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
