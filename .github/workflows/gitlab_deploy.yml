@@ -52,8 +52,9 @@ jobs:
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
-        git fetch --all
+        git remove update
+        git fetch
         git checkout origin/gh-pages
         git add dist
         git commit -m "Deploy to GitHub Pages"
-        git push origin gh-pages origin/gh-pages
+        git push
