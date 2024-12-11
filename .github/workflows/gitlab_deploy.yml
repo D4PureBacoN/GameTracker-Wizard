@@ -57,4 +57,4 @@ jobs:
         git checkout origin/gh-pages
         git add dist
         git commit -m "Deploy to GitHub Pages"
-        git push origin HEAD:gh-pages
+        git push origin gh-pages
