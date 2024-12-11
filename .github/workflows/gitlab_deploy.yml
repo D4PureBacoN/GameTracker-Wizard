@@ -18,6 +18,8 @@ jobs:
     steps:
     - name: Checkout GitHub repository
       uses: actions/checkout@v3
+      with:
+        submodules: false
 
     - name: Fetch from GitLab
       run: |
@@ -60,4 +62,4 @@ jobs:
         touch .nojekyll
         git add .
         git commit -m "Deploy to GitHub Pages"
-        git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
+        git push --recurse-submodules=no --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
