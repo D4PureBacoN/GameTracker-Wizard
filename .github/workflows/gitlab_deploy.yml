@@ -4,12 +4,12 @@ permissions:
   contents: write
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
       - gh-pages
       - deploy-test
+  workflow_dispatch:
 
 jobs:
   deploy:
