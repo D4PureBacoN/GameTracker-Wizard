@@ -4,11 +4,11 @@ permissions:
   contents: write
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
       - deploy-test
-  workflow_dispatch:
 
 jobs:
   deploy:
