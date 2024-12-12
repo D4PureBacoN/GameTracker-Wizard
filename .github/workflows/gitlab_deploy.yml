@@ -33,25 +33,30 @@ jobs:
         git remote add origin https://oauth2:${{ secrets.GITLAB_SECRET }}@code.ovgu.de/seidl/se24-exercise09.git
         git fetch origin
         git checkout develop
-        cd .
-        mv gitlab-project/* .
-        git init
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 22.11.0
 
-    - name: Install Angular CLI and dependencies
-      working-directory: ./GameTracker
+    - name: Install Angular and dependencies
+      working-directory: gitlab-project/GameTracker
       run: |
         npm install -g @angular/cli
         npm ci
-        ng add angular-cli-ghpages --skip-confirmation
 
     - name: Build project
-      working-directory: ./GameTracker
-      run: ng build --base-href https://d4purebacon.github.io/GameTracker-Wizard/
+      working-directory: gitlab-project/GameTracker
+      run: ng build --configuration production --base-href https://d4purebacon.github.io/GameTracker-Wizard/
+
+    - name: Move dist folder to root
+      run: |
+        if [ -d "gitlab-project/GameTracker/dist" ]; then
+          mv gitlab-project/GameTracker/dist/* ./docs
+          rm -rf gitlab-project
+        else
+          echo "No dist folder found, skipping file move."
+        fi
 
     - name: Deploy to GitHub Pages
       env:
