@@ -39,15 +39,16 @@ jobs:
       with:
         node-version: 22.11.0
 
-    - name: Install Angular and dependencies
+    - name: Install Angular CLI and dependencies
       working-directory: gitlab-project/GameTracker
       run: |
         npm install -g @angular/cli
         npm ci
+        ng add angular-cli-ghpages
 
     - name: Build project
       working-directory: gitlab-project/GameTracker
-      run: ng build --configuration production --base-href https://d4purebacon.github.io/GameTracker-Wizard/
+      run: ng deploy --base-href https://d4purebacon.github.io/GameTracker-Wizard/
 
     - name: Move dist folder to root
       run: |
