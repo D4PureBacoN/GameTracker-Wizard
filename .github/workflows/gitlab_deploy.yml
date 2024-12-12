@@ -45,7 +45,7 @@ jobs:
 
     - name: Build project
       working-directory: gitlab-project/GameTracker
-      run: npm run build --
+      run: ng build --configuration production --base-href https://d4purebacon.github.io/GameTracker-Wizard/
 
     - name: Move dist folder to root
       run: |
@@ -64,7 +64,6 @@ jobs:
         GIT_COMMITTER_EMAIL: actions@github.com
       run: |
         touch .nojekyll
-        mv docs/browser/* docs
         git add .
         git commit -m "Deploy to GitHub Pages"
         git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
