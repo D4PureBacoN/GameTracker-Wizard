@@ -44,7 +44,7 @@ jobs:
       run: |
         npm install -g @angular/cli
         npm ci
-        ng add angular-cli-ghpages
+        ng add angular-cli-ghpages --skip-confirmation
 
     - name: Build project
       working-directory: gitlab-project/GameTracker
