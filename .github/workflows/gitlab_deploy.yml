@@ -47,12 +47,13 @@ jobs:
 
     - name: Build project
       working-directory: gitlab-project/GameTracker
-      run: ng build --configuration production --base-href https://d4purebacon.github.io/GameTracker-Wizard/
+      run: ng build --configuration production --base-href /GameTracker-Wizard/ --output-paths docs
 
     - name: Move dist folder to root
       run: |
         if [ -d "gitlab-project/GameTracker/dist" ]; then
-          mv gitlab-project/GameTracker/dist/* ./docs
+          mv gitlab-project/GameTracker/docs/* ./docs
+          cp docs/index.html docs/404.html
           rm -rf gitlab-project
         else
           echo "No dist folder found, skipping file move."
