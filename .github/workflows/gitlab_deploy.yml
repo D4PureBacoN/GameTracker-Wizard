@@ -52,13 +52,13 @@ jobs:
     - name: Move dist folder to root
       run: |
         if [ -d "gitlab-project/GameTracker/docs" ]; then
-          if [ ! -d "/docs" ]; then
+          if [ ! -d "docs" ]; then
             echo "/docs does not exist. Creating it..."
-            mkdir -p /docs
+            mkdir -p docs
           fi
           echo "Moving contents to /docs..."
-          mv -f gitlab-project/GameTracker/docs/* /docs/
-          cp /docs/index.html /docs/404.html
+          mv -f gitlab-project/GameTracker/docs/* docs/
+          cp docs/index.html docs/404.html
           rm -rf gitlab-project
         else
           echo "No dist folder found, skipping file move."
