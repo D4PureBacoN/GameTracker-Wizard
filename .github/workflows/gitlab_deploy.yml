@@ -53,7 +53,7 @@ jobs:
       run: |
         if [ -d "gitlab-project/GameTracker/docs" ]; then
           ls
-          mv gitlab-project/GameTracker/docs/* ./docs
+          mv -f gitlab-project/GameTracker/docs/* /docs
           cp docs/index.html docs/404.html
           rm -rf gitlab-project
         else
