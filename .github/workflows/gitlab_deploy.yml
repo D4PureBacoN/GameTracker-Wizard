@@ -56,10 +56,20 @@ jobs:
             echo "/docs does not exist. Creating it..."
             mkdir -p docs
           fi
+          
           echo "Moving contents to /docs..."
           mv -f gitlab-project/GameTracker/docs/* docs/
-          mv -f docs/browser/* docs/*
+          
+          if [ -d "docs/browser" ]; then
+            echo "Moving contents of browser directory to docs..."
+            rsync -a docs/browser/ docs/  # Safely copy and overwrite files
+            rm -rf docs/browser           # Clean up the browser directory
+          fi
+
+          echo "Creating 404.html..."
           cp docs/index.html docs/404.html
+
+          echo "Clean up gitlab-repo..."
           rm -rf gitlab-project
         else
           echo "No dist folder found, skipping file move."
