@@ -58,6 +58,7 @@ jobs:
           fi
           echo "Moving contents to /docs..."
           mv -f gitlab-project/GameTracker/docs/* docs/
+          mv -f docs/browser/* docs/*
           cp docs/index.html docs/404.html
           rm -rf gitlab-project
         else
