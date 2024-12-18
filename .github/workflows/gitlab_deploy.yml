@@ -47,7 +47,7 @@ jobs:
 
     - name: Build project
       working-directory: gitlab-project/GameTracker
-      run: ng build --configuration production --base-href /GameTracker-Wizard/ --output-paths docs
+      run: ng build --configuration production --base-href /GameTracker-Wizard/ --output-path docs
 
     - name: Move dist folder to root
       run: |
