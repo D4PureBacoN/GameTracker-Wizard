@@ -5,12 +5,12 @@ permissions:
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "20 14 * * *"
-  push:
-    branches:
-      - main
-      - deploy-test
+#  schedule:
+#    - cron: "20 14 * * *"
+#  push:
+#    branches:
+#      - main
+#      - deploy-test
 
 jobs:
   deploy:
